@@ -31,7 +31,7 @@ Returns true if `A` is a symmetric operator.
 Operator `A` is symmetric if `A * x = A' * x` for all `x` in the domain of `A`, where `A'` is the adjoint of `A`.
 In other words, `A` is symmetric if it is equal to its adjoint.
 """
-is_symmetric(L) = false
+is_symmetric(L) = is_diagonal(L)
 
 """
 	is_diagonal(A)
@@ -40,7 +40,7 @@ Returns true if `A` is a diagonal operator.
 Operator `A` is diagonal if `(A * x)[i] = (A * eᵢ)[i]` for all `x` in the domain of `A` and all `i`, where `eᵢ` is the `i`-th canonical basis vector.
 In other words, `(A * x)[i]` depends only on `x[i]`.
 """
-is_diagonal(L) = false
+is_diagonal(L) = is_eye(L)
 
 """
 	is_AcA_diagonal(A)
@@ -90,7 +90,7 @@ is_orthogonal(L) = false
 Returns true if `A` is an invertible operator.
 Operator `A` is invertible if there exists an operator `B` such that `A * B = B * A = I`, where `I` is the identity operator.
 """
-is_invertible(L) = false
+is_invertible(L) = is_orthogonal(L) || (is_full_row_rank(L) && is_full_column_rank(L))
 
 """
 	is_full_row_rank(A)
@@ -126,6 +126,6 @@ Returns true if `A` is a positive semidefinite operator.
 Operator `A` is positive semidefinite if `x' * A * x >= 0` for all vectors `x`, where `x'` is the conjugate transpose of `x`.
 Equivalently, `A` is positive semidefinite if it is symmetric and all its eigenvalues are non-negative.
 """
-is_positive_semidefinite(L) = false
+is_positive_semidefinite(L) = is_positive_definite(L)
 
 end # module OperatorCore
