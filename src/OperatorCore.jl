@@ -5,8 +5,18 @@ module OperatorCore
 
 Returns true if `A` is a linear operator.
 Operator `A` is linear if `A * (x+y) = A * x + A * y` and `A * (α * x) = α * A * x` for all `x` and `y` in the domain of `A` and all scalars `α`.
+In particular `A * 0 = 0`: an affine operator `x ↦ Aₗ * x + d` with `d ≠ 0` is not linear (see [`is_affine`](@ref)).
 """
 is_linear(L) = false
+
+"""
+	is_affine(A)
+
+Returns true if `A` is an affine operator.
+Operator `A` is affine if `A * x = Aₗ * x + d` for all `x` in the domain of `A`, where `Aₗ` is a linear operator and `d` is a fixed element of the codomain of `A` (the displacement).
+Every linear operator is affine, with `d = 0`.
+"""
+is_affine(L) = is_linear(L)
 
 """
 	is_null(A)
