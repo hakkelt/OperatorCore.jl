@@ -12,7 +12,8 @@ OperatorCore provides the following property queries:
 
 ### Linearity and Basic Properties
 
-- **`is_linear(A)`** - Check if `A` is a linear operator
+- **`is_linear(A)`** - Check if `A` is a linear operator (so `A * 0 = 0`)
+- **`is_affine(A)`** - Check if `A` is an affine operator, `A * x = Aₗ * x + d` with `Aₗ` linear (defaults to `is_linear(A)`)
 - **`is_null(A)`** - Check if `A` is a null operator (always returns zero)
 - **`is_eye(A)`** - Check if `A` is an identity operator
 - **`is_symmetric(A)`** - Check if `A` equals its adjoint
